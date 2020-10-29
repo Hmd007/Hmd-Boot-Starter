@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
 /**
@@ -241,5 +242,10 @@ public abstract class BaseController<
         apiResponse.setMessage("Entité supprimée");
         apiResponse.setData((DTO) dto.getDtoFromEntity(entityDeleted));
         return output(apiResponse, HttpStatus.OK);
+    }
+
+    @ModelAttribute("login")
+    public String getLoginRequest(HttpServletRequest request) {
+        return (String) request.getAttribute("login");
     }
 }
